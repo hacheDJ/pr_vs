@@ -1,5 +1,5 @@
 const ProofOfPayService = require('../../application/proofOfPay.service'),
- MySqlProofOfPayAdapter = require("../adapters/MySql.proofOfPay.adapter")
+ MySqlProofOfPayAdapter = require("../adapters/mysql.proofOfPay.adapter")
 
 const registerController = async (req, res) => {
     try {
