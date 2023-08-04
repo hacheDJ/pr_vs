@@ -47,7 +47,7 @@ const router = () => {
     .use('/card', cardRoutes())
 
     router
-      .use('/api/1.0', welcome)
+      .get('/api/1.0', welcome)
       .use('/api/1.0', userRouter)
       .use('/api/1.0', productRouter)
       .use('/api/1.0', categoryRouter)
