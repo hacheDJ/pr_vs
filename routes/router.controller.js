@@ -1,10 +1,5 @@
 const welcome = (req, res) => {
-    return new Promise((resolve, reject) => {
-        res.json({
-            msg: "Welcome to my API Shop!!"
-        })
-        resolve()
-    })
+    res.send("<h1>Welcome to my API Shop!!</h1>")
 }
 
 module.exports = welcome
