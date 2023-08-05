@@ -6,4 +6,4 @@ const pool = mysql.createPool(DB)
 console.log('Connection MySQL successfully!');
 
 
-module.exports = { pool}
+module.exports = { pool }
