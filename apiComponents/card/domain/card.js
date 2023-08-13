@@ -1,5 +1,6 @@
-function Card(idCard, accountNumber, cardNumber, holder, cardIssuer, dateOfExpiry, cvv, balance, passCard){
+function Card(idCard, cardType, accountNumber, cardNumber, holder, cardIssuer, dateOfExpiry, cvv, balance, passCard){
     this.idCard = idCard
+    this.cardType = cardType
     this.accountNumber = accountNumber
     this.cardNumber = cardNumber
     this.holder = holder

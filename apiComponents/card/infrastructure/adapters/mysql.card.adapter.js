@@ -8,8 +8,8 @@ MySqlCardAdapter.prototype = new CardRepository()
 
 MySqlCardAdapter.prototype.pay = async (card) => {
     const c = toDomainModel(card),
-     sql = 'SELECT * FROM tb_Card WHERE cardNumber=? AND holder=? AND dateOfExpiry=? AND cvv=? AND passCard=?',
-     params = [c.cardNumber, c.holder, c.dateOfExpiry, c.cvv, c.passCard],
+     sql = 'SELECT * FROM tb_Card WHERE cardType=? AND cardNumber=? AND holder=? AND dateOfExpiry=? AND cvv=? AND passCard=?',
+     params = [c.cardType, c.cardNumber, c.holder, c.dateOfExpiry, c.cvv, c.passCard],
      [result] = await pool.query(sql, params)
 
     if(result.length <= 0)
