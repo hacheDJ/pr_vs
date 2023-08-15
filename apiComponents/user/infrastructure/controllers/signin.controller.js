@@ -18,7 +18,7 @@ const signinController = (req = request, res = response) => {
                 res.json(d)
             else{
                 const token = signToken(d.data)
-                res.json({data: d.data, token})
+                res.json({err: false, data: d.data, token})
             }
     })
     }catch(err){

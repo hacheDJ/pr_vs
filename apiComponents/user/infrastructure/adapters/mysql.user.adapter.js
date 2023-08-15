@@ -40,7 +40,7 @@ MysqlUserAdapter.prototype.signin = async (email, passwordUser) => {
         const passComp = await compare(passwordUser, result[0].passwordUser)
 
         if(!passComp) 
-            return {err: true, data: "Incorrect password"}
+            return {err: true, data: {}, token:""}
         else
             return {err: false, data: toDTOModel(result[0])}
     }catch(err){
