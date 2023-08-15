@@ -16,10 +16,10 @@ const registerController = async(req = request, res = response) => {
          user = toDomainModel({nameUser, lastNameUser, gender, documentType, documentNumber, address, email, passwordUser:hashedPass}),
          data = rs.register(user)
 
-        data.then(d => res.json({err:false, data:d}))
+        data.then(d => res.json({err:false, data:d, msg:"Register successful"}))
 
     } catch (err) {
-        res.json({err:true, data: err.message})
+        res.json({err:true, data:{}, msg:err.message})
     }
 }
 
