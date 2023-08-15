@@ -35,14 +35,14 @@ MysqlUserAdapter.prototype.signin = async (email, passwordUser) => {
          params = [email],
          [result] = await pool.query(sql, params)
 
-        if(result.length === 0) return {err: true, data: {}, token:""}
+        if(result.length === 0) return {err: true, data: {}, token:"", msg: "Email not found"}
 
         const passComp = await compare(passwordUser, result[0].passwordUser)
 
         if(!passComp) 
-            return {err: true, data: {}, token:""}
+            return {err: true, data: {}, token:"", msg: "Incorrect password"} 
         else
-            return {err: false, data: toDTOModel(result[0])}
+            return {err: false, data: toDTOModel(result[0]), msg: "Welcome!!"}
     }catch(err){
         console.log('>>>>>>>>>> ', err.message, ' <<<<<<<<<<')
     }
