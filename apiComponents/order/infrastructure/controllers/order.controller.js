@@ -1,9 +1,12 @@
+const { verifyToken } = require("../../../user/infrastructure/helpers/jsonwebtoken")
 const OrderService = require("../../application/order.service")
 const MySqlOrderAdapter = require("../adapters/MySql.order.adapter")
 
 const listByIdUserController = (req, res) => {
     try {
-        const id = req.params.id,
+        const token = req.headers.authorization.split(' ').pop(),
+         tokenData = verifyToken(token),
+         id = tokenData.id,
          os = new OrderService(new MySqlOrderAdapter()),
          data = os.listByIdUser(id)
 

@@ -6,7 +6,7 @@ const orderRoutes = () => {
     const router = Router()
 
     router
-     .get('/user/:id', checkAuth, listByIdUserController)
+     .get('/user', checkAuth, listByIdUserController)
      .get('/:state', checkAuth, checkAuthRole(['employee', 'admin']), listByStateController)
 
     return router
