@@ -10,11 +10,11 @@ const checkAuth = async (req, res, next) => {
             next()
         }else{
             res.status(401)
-            .json({msg: "Access denied!"})
+            .json({err:true, data:{}, msg: "Access denied!"})
         }
     } catch (err) {
         res.status(401)
-         .json({msg: "Access denied!"})
+         .json({err:true, data:{}, msg: "Access denied!"})
     }
 
 }
@@ -28,7 +28,7 @@ const alreadyAuth = async (req, res, next) => {
             console.log('Already authenticated');
             res
              .status(503)
-             .json({err:true, data:"It is already authenticated!"})
+             .json({err:true, data:{}, msg:"It is already authenticated!"})
         }else{
             console.log('ACCEDE!!!');
             next()
@@ -36,7 +36,7 @@ const alreadyAuth = async (req, res, next) => {
     } catch (err) {
         res
         .status(503)
-        .json({err:true, data:"It is not sending the authorizations"})
+        .json({err:true, data:{}, msg:"It is already authenticated!"})
     }
 
 }

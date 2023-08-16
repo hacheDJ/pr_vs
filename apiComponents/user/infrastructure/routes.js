@@ -12,7 +12,7 @@ const userRoutes = () => {
      .post('/signup', alreadyAuth, registerController)
      .post('/signin', alreadyAuth, signinController)
      .patch('/edit/:id', checkAuth, editController)
-     .get('/:id', checkAuth, findByIdController)
+     .get('/detail', checkAuth, findByIdController)
      .put('/edit/profile-picture/:id', checkAuth, upload.single('urlImg'), editProfilePictureController)
 
     return router

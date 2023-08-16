@@ -55,9 +55,9 @@ MysqlUserAdapter.prototype.findById = async (id) => {
          params = [id],
          [result] = await pool.query(sql, params)
 
-        if(result.length === 0) return {err: true, data: "User not found"}
+        if(result.length === 0) return {err: true, data:{}, msg:"User not found"}
 
-        return {err: false, data: toDTOModel(result[0])}
+        return {err: false, data: toDTOModel(result[0]), msg:"Successful"}
     }catch(err){
         console.log('>>>>>>>>>> ', err.message, ' <<<<<<<<<<')
     }
