@@ -1,3 +1,4 @@
+const { verifyToken } = require('../../../user/infrastructure/helpers/jsonwebtoken')
 const CardService = require('../../application/card.service'),
  MySqlCardAdapter = require("../adapters/mysql.card.adapter"),
  ProofOfPayService = require('../../../proofOfPay/application/proofOfPay.service'),
@@ -21,7 +22,17 @@ const payController = async (req, res) => {
             if(d2.affectedRows <= 0)
                 res.status(500).json({err:false, data: "Payment could not be completed"})
             else{
-                const {idUser, listProofOfPayDetail, placeOfDelivery, deliveryDate, contactNumber} = req.body,
+                /*const {idUser, listProofOfPayDetail, placeOfDelivery, deliveryDate, contactNumber} = req.body,
+                 pops = new ProofOfPayService(new MySqlProofOfPayAdapter()),
+                 d3 = await pops.register({ idUser, paymentMethod: cardType }, listProofOfPayDetail, {placeOfDelivery, deliveryDate, contactNumber})
+                
+                if(d3.affectedRows === 1) res.json({err:false, data:"Registered Order"})*/
+
+
+                const token = req.headers.authorization.split(' ').pop(),
+                 tokenData = verifyToken(token),
+                 idUser = tokenData.id,
+                 {listProofOfPayDetail, placeOfDelivery, deliveryDate, contactNumber} = req.body,
                  pops = new ProofOfPayService(new MySqlProofOfPayAdapter()),
                  d3 = await pops.register({ idUser, paymentMethod: cardType }, listProofOfPayDetail, {placeOfDelivery, deliveryDate, contactNumber})
                 

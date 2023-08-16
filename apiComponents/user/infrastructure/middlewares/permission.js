@@ -6,7 +6,7 @@ const checkAuthRole = (roles) => async (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ').pop(),
          tokenData = verifyToken(token),
-         fbis = new FindByIdService(new MysqlUserAdapter),
+         fbis = new FindByIdService(new MysqlUserAdapter()),
          user = await fbis.findById(tokenData.id)
 
         if(user.err){
