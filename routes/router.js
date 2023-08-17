@@ -11,6 +11,7 @@ const bodyParser = require("body-parser"),
  cardRoutes = require('../apiComponents/card/infrastructure/card.routes'),
  { join } = require('path')
 
+
 const router = () => {
     const router = Router(),
      userRouter = Router(),
@@ -22,6 +23,7 @@ const router = () => {
      PUBLIC_PATH = join(__dirname, '../uploads')
 //console.log('PATH_ROUTES -> ', join(__dirname, '../uploads'));
     userRouter
+     .use(cors({origin: "http://localhost:5173"}))
      .use(bodyParser.json())
      .use('/user', userRoutes())
     
