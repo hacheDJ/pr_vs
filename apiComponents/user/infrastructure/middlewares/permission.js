@@ -23,7 +23,7 @@ const checkAuthRole = (roles) => async (req, res, next) => {
     } catch (error) {
         res
          .status(401)
-         .json({err:true, data:{}, msg: "Unauthorized Err", err: error.message})
+         .json({err:true, data:{}, msg: error.message})
     }
 
      
