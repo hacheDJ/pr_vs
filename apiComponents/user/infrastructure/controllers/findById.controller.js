@@ -6,8 +6,13 @@ const findByIdController = async (req, res) => {
     try {
 
         const token = req.headers.authorization.split(' ').pop(),
-         tokenData = verifyToken(token),
-         id = tokenData.id,
+         tokenData = verifyToken(token)
+
+        if(Date.now() > (tokenData.exp * 1000)){
+            throw new Error('Your session expired')
+        }
+
+        const id = tokenData.id,
          us = new FindByIdService(new MysqlUserAdapter()),
          data = await us.findById(id)
 
