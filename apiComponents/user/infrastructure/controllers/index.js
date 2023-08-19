@@ -4,5 +4,6 @@ module.exports = {
     signinController: require('./signin.controller'),
     editController: require('./edit.controller'),
     findByIdController: require('./findById.controller'),
-    editProfilePictureController: require('./edit.profile.picture.controller')
+    editProfilePictureController: require('./edit.profile.picture.controller'),
+    verifyTokenCotroller: require('./verifyToken.controller')
 }

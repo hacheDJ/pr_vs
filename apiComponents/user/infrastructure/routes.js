@@ -1,5 +1,5 @@
 const { Router } = require("express"),
- { signinController, readController, registerController, editController, findByIdController, editProfilePictureController } = require("./controllers"),
+ { signinController, readController, registerController, editController, findByIdController, editProfilePictureController, verifyTokenCotroller} = require("./controllers"),
  { checkAuth, alreadyAuth } = require("./middlewares/authenticate"),
  { checkAuthRole } = require("./middlewares/permission"),
  upload = require('../../products/infrastructure/middlewares/multer')
@@ -14,6 +14,7 @@ const userRoutes = () => {
      .patch('/edit/:id', checkAuth, editController)
      .get('/detail', checkAuth, findByIdController)
      .put('/edit/profile-picture/:id', checkAuth, upload.single('urlImg'), editProfilePictureController)
+     .get('/verify-token', verifyTokenCotroller)
 
     return router
 }

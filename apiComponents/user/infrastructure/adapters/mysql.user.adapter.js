@@ -89,4 +89,5 @@ MysqlUserAdapter.prototype.editProfilePicture = async (user) => {
     }
 }
 
+
 module.exports = MysqlUserAdapter
