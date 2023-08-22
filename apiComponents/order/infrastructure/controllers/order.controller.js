@@ -29,4 +29,32 @@ const listByStateController = (req, res) => {
     }
 }
 
-module.exports = { listByIdUserController, listByStateController }
+const editEstateController = async (req, res) => {
+    try {
+        const idOrder = req.params.id,
+         orderState = req.body.orderState,
+         os = new OrderService(new MySqlOrderAdapter()),
+         data = await os.editState({orderState, idOrder})
+    
+        res.json({err:false, data:data[0], msg:"Edit success"})
+    
+    } catch (err) {
+        res.json({err:true, data:{}, msg:err.message})
+    }
+
+}
+
+const listByIdController = (req, res) => {
+    try {console.log(req.params.state);
+        const id = req.params.id,
+         os = new OrderService(new MySqlOrderAdapter()),
+         data = os.listById(id)
+
+         data.then(d => res.json(d[0][0]))
+
+    } catch (err) {
+        res.json({err:true, data:err.message})
+    }
+}
+
+module.exports = { listByIdUserController, listByStateController, editEstateController, listByIdController }

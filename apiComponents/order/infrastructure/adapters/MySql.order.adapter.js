@@ -1,5 +1,6 @@
 const OrderRepository = require("../../domain/repositories/order.repository"),
- { pool } = require('../../../../db/mysql')
+ { pool } = require('../../../../db/mysql'),
+ {toDomainModel} = require('../mappers')
 
 function MySqlOrderAdapter(){}
 
@@ -16,6 +17,23 @@ MySqlOrderAdapter.prototype.listByIdUser = (idUser) => {
 MySqlOrderAdapter.prototype.listByState = (state) => {
     const sql = 'CALL sp_listByState(?)',
      params = [state],
+     result= pool.query(sql, params)
+
+     return result
+}
+
+MySqlOrderAdapter.prototype.editState = (order) => {
+    const o = toDomainModel(order)
+     sql = 'UPDATE tb_Order SET orderState=? WHERE idOrder=?',
+     params = [o.orderState, o.idOrder],
+     result = pool.query(sql, params)
+
+     return result
+}
+
+MySqlOrderAdapter.prototype.listById = (id) => {
+    const sql = 'CALL sp_listById(?)',
+     params = [id],
      result= pool.query(sql, params)
 
      return result
